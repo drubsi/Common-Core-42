@@ -16,27 +16,28 @@ The main goal is to build a custom static library that will later be used in oth
 
 ## 🛠️ Compilation
 
-The library includes a `Makefile` with the following rules:
-
+**The library includes a `Makefile` with the following rules**:
+```c
 make        # Compiles the libft.a library  
 make clean  # Removes .o files  
 make fclean # Removes .o files and libft.a  
 make re     # Rebuilds everything  
-
-When compiled, the following file will be generated:
-
+```
+**When compiled, the following file will be generated:**
+```c
 libft.a
-
-Include the library header in your code:
+```
+**Include the library header in your code:**
 
 ```c
 #include "libft.h"
-
-Compile linking the library:
-
+```
+**Compile linking the library:**
+```c
 cc main.c -L. -lft -o program
-
-📂 Library Contents
+```
+**📂 Library Contents**
+```c
 🔹 Memory Functions
 
 ft_memset
@@ -46,7 +47,8 @@ ft_memmove
 ft_memchr
 ft_memcmp
 ft_calloc
-
+```
+```c
 🔹 String Functions
 
 ft_strlen
@@ -64,11 +66,13 @@ ft_split
 ft_itoa
 ft_strmapi
 ft_striteri
-
+```
+```c
 🔹 Conversion Functions
 
 ft_atoi
-
+```
+```c
 🔹 Character Functions
 
 ft_isalpha
@@ -79,16 +83,18 @@ ft_isprint
 ft_toupper
 ft_tolower
 ft_isspace
-
+```
+```c
 🔹 Output Functions
 
 ft_putchar_fd
 ft_putstr_fd
 ft_putendl_fd
 ft_putnbr_fd
+```
 
-🟦 Bonus (optional)
-
+**🟦 Bonus (optional)**
+```c
 Implementation of a simple linked list:
 
 ft_lstnew
@@ -100,7 +106,7 @@ ft_lstdelone
 ft_lstclear
 ft_lstiter
 ft_lstmap
-
+```
 
 # Libft — Milestone 0
 
@@ -120,27 +126,28 @@ El objetivo principal es construir una librería estática propia que después s
 
 ## 🛠️ Compilación
 
-La librería incluye un `Makefile` con las reglas:
-
+**La librería incluye un `Makefile` con las reglas:**
+```c
 make        # Compila la librería libft.a
 make clean  # Elimina los archivos .o
 make fclean # Elimina los .o y libft.a
 make re     # Reconstruye todo
-
-Al compilar, se generará:
-
+```
+**Al compilar, se generará:**
+```c
 libft.a
-
-Incluye el header de la librería:
-
+```
+**Incluye el header de la librería:**
+```c
 #include "libft.h"
+```
 
-
-Y compila enlazando la librería:
-
+**Y compila enlazando la librería:**
+```c
 cc main.c -L. -lft -o programa
-
-📂 Contenido de la librería
+```
+**📂 Contenido de la librería**
+```c
 🔹 Funciones de memoria
 
 ft_memset
@@ -156,7 +163,8 @@ ft_memchr
 ft_memcmp
 
 ft_calloc
-
+```
+```c
 🔹 Funciones de strings
 
 ft_strlen
@@ -188,11 +196,13 @@ ft_itoa
 ft_strmapi
 
 ft_striteri
-
+```
+```c
 🔹 Funciones de conversión
 
 ft_atoi
-
+```
+```c
 🔹 Funciones de caracteres
 
 ft_isalpha
@@ -210,7 +220,8 @@ ft_toupper
 ft_tolower
 
 ft_isspace
-
+```
+```c
 🔹 Funciones de escritura
 
 ft_putchar_fd
@@ -220,9 +231,9 @@ ft_putstr_fd
 ft_putendl_fd
 
 ft_putnbr_fd
-
-🟦 Bonus (opcional)
-
+```
+**🟦 Bonus (opcional)**
+```c
 Implementación de una lista enlazada simple:
 
 ft_lstnew
@@ -240,5 +251,6 @@ ft_lstdelone
 ft_lstclear
 
 ft_lstiter
+```
 
 ft_lstmap
