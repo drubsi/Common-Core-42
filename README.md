@@ -6,7 +6,7 @@ Each folder contains the code submitted during evaluation.
 ---
 
 ## 🟦 Milestone 0
-- **Libft** — Reimplementation of standard C library functions.
+- [**Libft**](https://github.com/drubsi/Common-Core-42/tree/main/Milestone0) — Reimplementation of standard C library functions. ✅ **125**
 
 ---
 
