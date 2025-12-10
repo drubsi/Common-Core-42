@@ -6,27 +6,27 @@ Each folder contains the code submitted during evaluation.
 ---
 
 ## 🟦 Milestone 0
-- [**Libft**](https://github.com/drubsi/Common-Core-42/tree/main/Milestone0) — Reimplementation of standard C library functions. ✅ **125**
+- [**Libft**](Milestone0/libft) — Reimplementation of standard C library functions. ✅ **125**
 
 ---
 
 ## 🟩 Milestone 1
-- **ft_printf** — Recreation of the `printf` function.
-- **get_next_line** — Line-by-line file descriptor reading.
-- **Born2beroot** — Debian server configured following security guidelines.
+- [**ft_printf**](Milestone01/ft_printf) Recreation of the `printf` function. ✅ **100**
+- [**get_next_line**](Milestone01/GNL) — Line-by-line file descriptor reading. ✅ **125**
+- **Born2beroot** — Debian server configured following security guidelines. ✅ **100**
 
 ---
 
 ## 🟧 Milestone 2
-- **push_swap** — Sorting algorithm using stacks.
-- **pipex** — Reproduction of shell pipelines.
-- **so_long** — 2D game built using MLX42.
+- [**push_swap**](Milestone02/push_swap) — Sorting algorithm using stacks. ✅ **96**
+- [**pipex**](Milestone02/pipex) — ReproducciónReproduction of shell pipelines. ✅ **100**
+- [**so_long**](Milestone02/so_long) — 2D game built using MLX42. ✅ **100**
 
 ---
 
 ## 🟥 Milestone 3
-- **Minishell** — Minimal shell with pipes, redirections and signal handling.
-- **Philosophers** — Simulation of the dining philosophers problem using threads and mutexes.
+- [**Minishell**](Milestone03/minishell) — Minimal shell with pipes, redirections and signal handling. ✅ **101**
+- [**Philosophers**](Milestone03/philosophers) — Simulation of the dining philosophers problem using threads and mutexes. ✅ **100**
 
 ---
 
@@ -63,26 +63,26 @@ Cada carpeta contiene el código entregado durante la evaluación.
 ---
 
 ## 🟦 Milestone 0
-- **Libft** — Reimplementación de funciones estándar en C.
+- [**Libft**](Milestone0/libft) — Reimplementación de funciones estándar en C. ✅ **125**
 
 ---
 
 ## 🟩 Milestone 1
-- **ft_printf** — Recreación de la función printf.  
-- **get_next_line** — Lectura línea a línea desde un FD.  
-- **Born2beroot** — Servidor Debian configurado bajo normas de seguridad.  
+- [**ft_printf**](Milestone01/ft_printf) — Recreación de la función printf. ✅ **100**
+- [**get_next_line**](Milestone01/GNL) — Lectura línea a línea desde un FD. ✅ **125**
+- **Born2beroot** — Servidor Debian configurado bajo normas de seguridad. ✅ **100**
 
 ---
 
 ## 🟧 Milestone 2
-- **push_swap** — Algoritmo de ordenación usando pilas.  
-- **pipex** — Reproducción de pipelines de shell.  
-- **so_long** — Juego 2D utilizando MLX42.
+- [**push_swap**](Milestone02/push_swap) — Algoritmo de ordenación usando pilas. ✅ **96**
+- [**pipex**](Milestone02/pipex) — Reproducción de pipelines de shell. ✅ **100**
+- [**so_long**](Milestone02/so_long) — Juego 2D utilizando MLX42. ✅ **100**
 ---
 
 ## 🟥 Milestone 3
-- **Minishell** — Shell minimalista con pipes, redirecciones y gestión de señales.  
-- **Philosophers** — Simulación del problema de los filósofos usando threads y mutex.
+- [**Minishell**](Milestone03/minishell) — Shell minimalista con pipes, redirecciones y gestión de señales. ✅ **101**
+- [**Philosophers**](Milestone03/philosophers) — Simulación del problema de los filósofos usando threads y mutex. ✅ **100**
 
 ---
 
