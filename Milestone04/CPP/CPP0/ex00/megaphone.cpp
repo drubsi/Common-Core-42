@@ -6,7 +6,7 @@
 /*   By: drubio-s <drubio-s@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 10:04:33 by drubio-s          #+#    #+#             */
-/*   Updated: 2025/12/19 10:32:08 by drubio-s         ###   ########.fr       */
+/*   Updated: 2025/12/19 11:14:02 by drubio-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,6 @@ int	main(int argc, char **argv)
 	}
 	else
 		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
-	std::cout << "\n";
+	std::cout << std::endl;
 	return (0);
 }
