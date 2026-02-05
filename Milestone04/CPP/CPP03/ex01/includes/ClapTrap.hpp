@@ -6,7 +6,7 @@
 /*   By: drubio-s <drubio-s@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 16:24:19 by drubio-s          #+#    #+#             */
-/*   Updated: 2026/01/29 12:30:48 by drubio-s         ###   ########.fr       */
+/*   Updated: 2026/02/05 17:11:04 by drubio-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ class	ClapTrap
 {
 	protected:
 		std::string		name;
-		unsigned int	HitPoints;
-		unsigned int	EnergyPoints;
-		unsigned int	AttackDamage;
+		unsigned int	hitPoints;
+		unsigned int	energyPoints;
+		unsigned int	attackDamage;
 	
 	public:
 		ClapTrap();

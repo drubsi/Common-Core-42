@@ -6,13 +6,13 @@
 /*   By: drubio-s <drubio-s@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 18:20:24 by drubio-s          #+#    #+#             */
-/*   Updated: 2026/01/20 19:06:12 by drubio-s         ###   ########.fr       */
+/*   Updated: 2026/02/05 18:11:14 by drubio-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <string>
-#include "../includes/sed.hpp"
+#include "sed.hpp"
 
 int	main(int argc, char** argv)
 {
@@ -23,14 +23,14 @@ int	main(int argc, char** argv)
 	}
 	else
 	{
-		const std::string FileIn = argv[1];
-		const std::string	Word1 = argv[2];
-		const std::string Word2 = argv[3];
-		if (Word1.empty())
+		const std::string fileIn = argv[1];
+		const std::string	word1 = argv[2];
+		const std::string word2 = argv[3];
+		if (word1.empty())
 		{
 			std::cerr << "The first word cannot be empty" << std::endl;
 			return (1);
 		}
-		return(sed(FileIn, Word1, Word2));
+		return(sed(fileIn, word1, word2));
 	}
 }

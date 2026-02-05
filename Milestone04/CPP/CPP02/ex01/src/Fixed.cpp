@@ -6,11 +6,11 @@
 /*   By: drubio-s <drubio-s@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 18:34:42 by drubio-s          #+#    #+#             */
-/*   Updated: 2026/01/25 12:14:37 by drubio-s         ###   ########.fr       */
+/*   Updated: 2026/02/05 18:12:46 by drubio-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Fixed.hpp"
+#include "Fixed.hpp"
 #include <cmath>
 #include <iostream>
 

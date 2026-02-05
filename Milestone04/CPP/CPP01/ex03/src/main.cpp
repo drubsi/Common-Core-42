@@ -6,13 +6,13 @@
 /*   By: drubio-s <drubio-s@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 18:01:23 by drubio-s          #+#    #+#             */
-/*   Updated: 2026/01/19 18:03:11 by drubio-s         ###   ########.fr       */
+/*   Updated: 2026/02/05 18:10:51 by drubio-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Weapon.hpp"
-#include "../includes/HumanA.hpp"
-#include "../includes/HumanB.hpp"
+#include "Weapon.hpp"
+#include "HumanA.hpp"
+#include "HumanB.hpp"
 
 int	main()
 {

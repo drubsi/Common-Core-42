@@ -6,11 +6,11 @@
 /*   By: drubio-s <drubio-s@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 21:16:42 by drubio-s          #+#    #+#             */
-/*   Updated: 2026/02/04 10:08:38 by drubio-s         ###   ########.fr       */
+/*   Updated: 2026/02/05 18:19:03 by drubio-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Brain.hpp"
+#include "Brain.hpp"
 #include <iostream>
 
 Brain::Brain()

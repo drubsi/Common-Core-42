@@ -6,20 +6,20 @@
 /*   By: drubio-s <drubio-s@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 09:41:34 by drubio-s          #+#    #+#             */
-/*   Updated: 2026/01/19 18:03:07 by drubio-s         ###   ########.fr       */
+/*   Updated: 2026/02/05 18:10:35 by drubio-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/HumanB.hpp"
-#include "../includes/Weapon.hpp"
+#include "HumanB.hpp"
+#include "Weapon.hpp"
 #include <iostream>
 
 HumanB::HumanB(const std::string& name) : name(name), weapon(NULL)
 {
 }
-void	HumanB::setWeapon(Weapon& NewWeapon)
+void	HumanB::setWeapon(Weapon& newWeapon)
 {
-	this->weapon = &NewWeapon;
+	this->weapon = &newWeapon;
 }
 
 void	HumanB::attack() const

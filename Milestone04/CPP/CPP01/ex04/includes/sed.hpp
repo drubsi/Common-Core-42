@@ -6,7 +6,7 @@
 /*   By: drubio-s <drubio-s@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 18:53:23 by drubio-s          #+#    #+#             */
-/*   Updated: 2026/01/20 19:08:49 by drubio-s         ###   ########.fr       */
+/*   Updated: 2026/02/05 16:38:20 by drubio-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 
 #include <string>
 
-int	sed(const std::string& InFile, const std::string& Word1, const std::string& Word2);
+int	sed(const std::string& inFile, const std::string& word1, const std::string& word2);
 
 #endif

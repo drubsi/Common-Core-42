@@ -6,7 +6,7 @@
 /*   By: drubio-s <drubio-s@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 12:04:02 by drubio-s          #+#    #+#             */
-/*   Updated: 2026/01/30 08:48:51 by drubio-s         ###   ########.fr       */
+/*   Updated: 2026/02/05 18:14:01 by drubio-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #define SCAVTRAP_HPP
 
 #include <string>
-#include "../includes/ClapTrap.hpp"
+#include "ClapTrap.hpp"
 
 class ScavTrap: public ClapTrap
 {

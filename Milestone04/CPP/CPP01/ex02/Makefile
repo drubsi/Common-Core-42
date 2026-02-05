@@ -4,11 +4,10 @@ CC		= c++
 CFLAGS	= -Wall -Werror -Wextra -std=c++98
 OBJ_DIR	= obj
 SRC_DIR	= src
-
-SRCS	=	\
+SRC	=	\
 			src/main.cpp
 
-OBJS	= $(patsubst src/%.cpp, $(OBJ_DIR)/%.o, $(SRCS))
+OBJS	= $(patsubst src/%.cpp, $(OBJ_DIR)/%.o, $(SRC))
 
 all:	$(NAME)
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR)
@@ -17,20 +16,19 @@ $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
 
 $(NAME): $(OBJS)
-		@echo "Compilacion $(NAME)..."
+		@echo "Compiling $(NAME)..."
 		$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
-		@echo "Compilacion completada."
+		@echo "$(NAME) compiled successfully."
 
 clean:
-		@echo "Eliminando archivos objeto..."
+		@echo "Removing object files..."
 		@rm -rf $(OBJ_DIR)
-		@echo "Limpieza de objetos completada."
+		@echo "Object files removed."
 
-fclean:
-		@echo "Eliminando ejecutable..."
-		@rm -f $(NAME) -rf $(OBJ_DIR)
-		@echo "Eliminacion completa."
-
+fclean: clean
+		@echo "Removing binary $(NAME)..."
+		@rm -f $(NAME)
+		@echo "Full cleanup complete."
 re:	fclean all
 
 .PHONY: all clean fclean re

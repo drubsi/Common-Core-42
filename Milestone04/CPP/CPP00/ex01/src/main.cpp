@@ -6,14 +6,13 @@
 /*   By: drubio-s <drubio-s@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 16:19:01 by drubio-s          #+#    #+#             */
-/*   Updated: 2025/12/29 11:22:06 by drubio-s         ###   ########.fr       */
+/*   Updated: 2026/02/04 19:36:25 by drubio-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <limits>
-#include "phoneBook.hpp"
-#include "contact.hpp"
+#include "PhoneBook.hpp"
 
 static bool readField(const char* prompt, std::string& out)
 {
@@ -65,7 +64,7 @@ static void handleSearch(const PhoneBook& pb)
 }
 int	main()
 {
-	PhoneBook phonebook;
+	PhoneBook phoneBook;
 	std::string cmd;
 
 	while (1)
@@ -74,9 +73,9 @@ int	main()
 		if (!(std::cin >> cmd))
 			break;
 		if (cmd == "ADD")
-			handleAdd(phonebook);
+			handleAdd(phoneBook);
 		else if (cmd == "SEARCH")
-			handleSearch(phonebook);
+			handleSearch(phoneBook);
 		else if (cmd == "EXIT")
 			break;
 	}

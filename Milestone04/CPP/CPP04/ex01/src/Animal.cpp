@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Animal.hpp"
+#include "Animal.hpp"
 #include <iostream>
 
 Animal::Animal() : type("Animal")

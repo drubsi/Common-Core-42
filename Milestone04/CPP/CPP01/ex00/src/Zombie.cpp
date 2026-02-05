@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   zombie.cpp                                         :+:      :+:    :+:   */
+/*   Zombie.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: drubio-s <drubio-s@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 10:15:17 by drubio-s          #+#    #+#             */
-/*   Updated: 2026/01/12 17:10:41 by drubio-s         ###   ########.fr       */
+/*   Updated: 2026/02/05 17:33:33 by drubio-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Zombie.hpp"
+#include "Zombie.hpp"
 #include <iostream>
 
 Zombie::Zombie(std::string name)

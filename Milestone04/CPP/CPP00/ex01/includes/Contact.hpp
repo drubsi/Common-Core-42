@@ -6,21 +6,21 @@
 /*   By: drubio-s <drubio-s@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 09:00:43 by drubio-s          #+#    #+#             */
-/*   Updated: 2025/12/29 10:49:57 by drubio-s         ###   ########.fr       */
+/*   Updated: 2026/02/04 18:55:41 by drubio-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CONTACT_HPP
-# define CONTACT_HPP
+#define CONTACT_HPP
 
-# include <string>
+#include <string>
 
 class Contact
 {
 private:
 	std::string	firstName;
 	std::string	lastName;
-	std::string	nickname;
+	std::string	nickName;
 	std::string	phoneNumber;
 	std::string	darkestSecret;
 	

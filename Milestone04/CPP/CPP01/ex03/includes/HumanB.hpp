@@ -6,7 +6,7 @@
 /*   By: drubio-s <drubio-s@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 17:28:14 by drubio-s          #+#    #+#             */
-/*   Updated: 2026/01/16 10:30:30 by drubio-s         ###   ########.fr       */
+/*   Updated: 2026/02/05 16:32:52 by drubio-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ class HumanB
 		Weapon* weapon;
 	public:
 		HumanB(const std::string& name);
-		void	setWeapon(Weapon& NewWeapon);
+		void	setWeapon(Weapon& newWeapon);
 		void	attack() const;
 } ;
 

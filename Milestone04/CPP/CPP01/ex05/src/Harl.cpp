@@ -6,11 +6,11 @@
 /*   By: drubio-s <drubio-s@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 19:33:27 by drubio-s          #+#    #+#             */
-/*   Updated: 2026/01/21 18:13:27 by drubio-s         ###   ########.fr       */
+/*   Updated: 2026/02/05 18:11:34 by drubio-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Harl.hpp"
+#include "Harl.hpp"
 #include <iostream>
 
 
@@ -37,7 +37,7 @@ void Harl::error()
 }
 void Harl::complain(std::string level)
 {
-	std::string HarlLevel[] = {"debug", "info", "warning", "error"};
+	std::string harlLevel[] = {"debug", "info", "warning", "error"};
 	void (Harl::*access[]) () = {
 		&Harl::debug,
 		&Harl::info,
@@ -46,7 +46,7 @@ void Harl::complain(std::string level)
 	};
 	for (int i = 0; i < 4; i++)
 	{
-		if (HarlLevel[i] == level)
+		if (harlLevel[i] == level)
 		{
 			(this->*access[i])();
 			return;

@@ -6,7 +6,7 @@
 /*   By: drubio-s <drubio-s@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 11:34:40 by drubio-s          #+#    #+#             */
-/*   Updated: 2026/01/23 17:39:32 by drubio-s         ###   ########.fr       */
+/*   Updated: 2026/02/05 16:42:53 by drubio-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 class Fixed
 {
 	private:
-		int			fixedPointValue;
+		int					fixedPointValue;
 		static const int	fractionalBits = 8;
 	
 	public:
