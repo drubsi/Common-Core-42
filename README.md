@@ -30,15 +30,14 @@ Each folder contains the code submitted during evaluation.
 
 ---
 
-## 🟨 Milestone 4 (in progress)
+## 🟨 Milestone 4
 - **NetPractice** — Network configuration and analysis exercises.
 - **CPP Modules 00–04** — Introduction to C++ programming.
 - **cub3d / minirt** — 3D graphics project.
 
 ---
 
-## 🟪 Higher Milestones (pending)
-### Milestone 5
+### Milestone 5 (in progress)
 - Inception  
 - webserv / ft_irc  
 - CPP Modules 05–09  
@@ -86,15 +85,14 @@ Cada carpeta contiene el código entregado durante la evaluación.
 
 ---
 
-## 🟨 Milestone 4 (en progreso)
+## 🟨 Milestone 4 
 - **NetPractice** — Configuración y análisis de redes.  
 - **CPP Modules 00–04** — Introducción a la programación en C++.  
 - **cub3d / minirt** — Proyecto gráfico 3D.
 
 ---
 
-## 🟪 Milestone superiores (pendiente)
-### Milestone 5
+### Milestone 5 (en progreso)
 - Inception  
 - webserv / ft_irc  
 - CPP Modules 05–09
