@@ -19,7 +19,7 @@ Each folder contains the code submitted during evaluation.
 
 ## 🟧 Milestone 2
 - [**push_swap**](Milestone02/push_swap) — Sorting algorithm using stacks. ✅ **96**
-- [**pipex**](Milestone02/pipex) — ReproducciónReproduction of shell pipelines. ✅ **100**
+- [**pipex**](Milestone02/pipex) — Reproduction of shell pipelines. ✅ **100**
 - [**so_long**](Milestone02/so_long) — 2D game built using MLX42. ✅ **100**
 
 ---
@@ -31,18 +31,18 @@ Each folder contains the code submitted during evaluation.
 ---
 
 ## 🟨 Milestone 4
-- **NetPractice** — Network configuration and analysis exercises.
-- **CPP Modules 00–04** — Introduction to C++ programming.
-- **cub3d / minirt** — 3D graphics project.
+- [**NetPractice**](Milestone04/NetPractice) — Network configuration and analysis exercises. ✅ **100**
+- [**CPP Modules 00–04**](Milestone04/CPP) — Introduction to C++ programming. ✅ **88 (80-100-80-100-80)**
+- [**cub3d**](Milestone04/Cub3d) — 3D graphics project. ✅ **115**
 
 ---
 
-### Milestone 5 (in progress)
-- Inception  
-- webserv / ft_irc  
-- CPP Modules 05–09  
+## 🟪 Milestone 5 (in progress)
+- Inception
+- webserv / ft_irc
+- CPP Modules 06–09(Milestone05/CPP/CPP5) — Repetition and exceptions
 
-### Milestone 6
+## ⬛ Milestone 6
 - ft_transcendence  
 
 ---
@@ -86,18 +86,19 @@ Cada carpeta contiene el código entregado durante la evaluación.
 ---
 
 ## 🟨 Milestone 4 
-- **NetPractice** — Configuración y análisis de redes.  
-- **CPP Modules 00–04** — Introducción a la programación en C++.  
-- **cub3d / minirt** — Proyecto gráfico 3D.
+- [**NetPractice**](Milestone04/NetPractice) — Configuración y análisis de redes. ✅ **100**
+- [**CPP Modules 00–04**](Milestone04/CPP) — Introducción a la programación en C++. ✅ **88 (80-100-80-100-80)**
+- [**cub3d**](Milestone04/Cub3d) — Proyecto gráfico 3D. ✅ **115**
 
 ---
 
-### Milestone 5 (en progreso)
-- Inception  
-- webserv / ft_irc  
-- CPP Modules 05–09
+## 🟪 Milestone 5 (en progreso)
+- Inception
+- webserv / ft_irc
+- CPP Modules 06–09(Milestone05/CPP/CPP5) 
 
-### Milestone 6
+
+## ⬛ Milestone 6
 - ft_transcendence
 
 ---
