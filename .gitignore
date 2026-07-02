@@ -58,6 +58,7 @@ dkms.conf
 **/obj/
 Bureaucrat
 *_shrubbery
+**/Practicas/
 
 # Local PDFs and downloaded subjects
 *.pdf
