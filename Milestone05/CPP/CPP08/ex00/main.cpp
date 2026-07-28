@@ -2,8 +2,8 @@
 #include <vector>
 #include <list>
 #include <iostream>
-#include <iterator>
-#include <cstddef>
+#include <iterator>//std::distance
+#include <cstddef>//std::size_t
 
 int	main(void)
 {
