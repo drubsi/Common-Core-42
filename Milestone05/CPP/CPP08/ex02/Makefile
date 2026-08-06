@@ -1,4 +1,4 @@
-NAME			=	Span
+NAME			=	MutantStack
 
 CXX				=	c++
 CXXFLAGS		=	-Wall -Werror -Wextra -std=c++98 -g
@@ -7,8 +7,7 @@ OBJ_DIR			=	obj
 
 SRC				=	main.cpp
 
-HEADERS			=	MutantStack.hpp \
-					MutantStack.tpp
+HEADERS			=	MutantStack.hpp
 
 OBJS			=	$(SRC:%.cpp=$(OBJ_DIR)/%.o)
 
