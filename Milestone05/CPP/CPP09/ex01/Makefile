@@ -1,4 +1,4 @@
-NAME			=	RPN	
+NAME			=	RPN
 
 CXX				=	c++
 CXXFLAGS		=	-Wall -Werror -Wextra -std=c++98 -g
@@ -10,7 +10,7 @@ SRC				=	main.cpp \
 
 HEADERS			=	RPN.hpp
 
-OBJS			=	$(SRC:%.CPP=$(OBJ_DIR)/%.o)
+OBJS			=	$(SRC:%.cpp=$(OBJ_DIR)/%.o)
 
 all: $(NAME)
 
@@ -27,7 +27,7 @@ clean:
 	rm -rf $(OBJ_DIR)
 
 fclean: clean
-	rm - f $(NAME)
+	rm -f $(NAME)
 
 re: fclean all
 
