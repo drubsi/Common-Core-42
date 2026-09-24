@@ -197,20 +197,20 @@ void PmergeMe::insertRemainingGroups(SortState& state)
 		for (std::size_t groupIndex = currentBoundary;
 			groupIndex > previousBoundary; groupIndex--)
 		{
-			std::size_t groupBegin
-				= (groupIndex - 1) * state.currentGroupSize;
-			std::size_t groupEnd
-				= groupIndex * state.currentGroupSize - 1;
-			std::size_t partnerGroupIndex
-				= findPartnerGroupIndex(state, groupEnd);
-			std::deque<int>::iterator insertionPosition
-				= findInsertionPosition(state.groupB.at(groupEnd), state,
-					partnerGroupIndex);
-			insertGroup(state, insertionPosition, groupBegin, groupEnd);
+			insertGroupByIndex(state, groupIndex);
 		}
 		previousBoundary = currentBoundary;
 		jacobsthalIndex++;
 	}
+}
+
+void PmergeMe::insertGroupByIndex(SortState& state, std::size_t groupIndex)
+{	
+	std::size_t groupBegin = (groupIndex - 1) * state.currentGroupSize;
+	std::size_t groupEnd = groupIndex * state.currentGroupSize - 1;
+	std::size_t partnerGroupIndex = findPartnerGroupIndex(state, groupEnd);
+	std::deque<int>::iterator insertionPosition	= findInsertionPosition(state.groupB.at(groupEnd), state, partnerGroupIndex);
+	insertGroup(state, insertionPosition, groupBegin, groupEnd);
 }
 
 std::size_t PmergeMe::findPartnerGroupIndex(SortState& state,

@@ -37,6 +37,7 @@ class PmergeMe
 		void rebuildMainChain(SortState& state);
 		void initializeMainChain(SortState& state);
 		void insertRemainingGroups(SortState& state);
+		void insertGroupByIndex(SortState& state, std::size_t groupIndex);
 		std::size_t findPartnerGroupIndex(SortState& state,
 			std::size_t partnerIndex);
 		std::deque<int>::iterator findInsertionPosition(
