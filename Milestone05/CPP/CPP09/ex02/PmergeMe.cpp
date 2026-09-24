@@ -10,17 +10,22 @@ struct SortState
 	std::size_t completeGroups;
 	std::size_t groupPairs;
 	std::size_t unpairedGroup;
-	std::deque<int> groupA;
-	std::deque<int> groupB;
-	std::deque<int> pending;
+	std::deque<int> dequeGroupA;
+	std::deque<int> dequeGroupB;
+	std::deque<int> dequePending;
 	std::deque<int> dequeTemp;
+	std::vector<int> vectorGroupA;
+	std::vector<int> vectorGroupB;
+	std::vector<int> vectorPending;
+	std::vector<int> vectorTemp;
+
 
 	SortState(std::size_t activeSize, std::size_t initialGroupSize)
 		: hasPending(false), currentGroupSize(initialGroupSize),
 		  completeGroups(activeSize / initialGroupSize),
 		  groupPairs(completeGroups / 2),
-		  unpairedGroup(completeGroups % 2), groupA(), groupB(), pending(),
-		  dequeTemp()
+		  unpairedGroup(completeGroups % 2), dequeGroupA(), dequeGroupB(), dequePending(),
+		  dequeTemp(), vectorGroupA(), vectorGroupB(), vectorPending(), vectorTemp()
 	{
 		if (unpairedGroup)
 			hasPending = true;
@@ -37,11 +42,17 @@ PmergeMe::PmergeMe(const InputData& data)
 {
 	fillDeque(data);
 	sortDequeRecursive();
-	std::cout << "After: " << std::endl;
+	std::cout << "Deque After: " << std::endl;
 	for (std::size_t index = 0; index < dequeSequence.size(); index++)
 		std::cout << dequeSequence.at(index) << " ";
 	std::cout << std::endl;
+	groupSize = 1;
 	fillVector(data);
+	sortVectorRecursive();
+	std::cout << "Vector After: " << std::endl;
+	for (std::size_t index = 0; index < vectorSequence.size(); index++)
+		std::cout << vectorSequence.at(index) << " ";
+	std::cout << std::endl;
 }
 
 PmergeMe::PmergeMe(const PmergeMe& copy)
@@ -85,20 +96,20 @@ void PmergeMe::sortDequeRecursive()
 	for (std::size_t groupIndex = 0; groupIndex < state.groupPairs;
 		groupIndex++)
 	{
-		extractGroup(state, state.groupA);
-		extractGroup(state, state.groupB);
-		orderGroupPair(state);
-		state.groupA.clear();
-		state.groupB.clear();
+		extractDequeGroup(state, state.dequeGroupA);
+		extractDequeGroup(state, state.dequeGroupB);
+		orderDequeGroupPair(state);
+		state.dequeGroupA.clear();
+		state.dequeGroupB.clear();
 	}
-	storePendingGroup(state);
+	storeDequePendingGroup(state);
 	state.dequeTemp = dequeSequence;
 	groupSize *= 2;
 	sortDequeRecursive();
 	rebuildDequeLevel(state);
 }
 
-void PmergeMe::extractGroup(SortState& state, std::deque<int>& group)
+void PmergeMe::extractDequeGroup(SortState& state, std::deque<int>& group)
 {
 	for (std::size_t index = 0; index < state.currentGroupSize; index++)
 		group.push_back(state.dequeTemp.at(index));
@@ -106,88 +117,88 @@ void PmergeMe::extractGroup(SortState& state, std::deque<int>& group)
 		state.dequeTemp.pop_front();
 }
 
-void PmergeMe::orderGroupPair(SortState& state)
+void PmergeMe::orderDequeGroupPair(SortState& state)
 {
-	if (state.groupA.at(state.currentGroupSize - 1)
-		> state.groupB.at(state.currentGroupSize - 1))
+	if (state.dequeGroupA.at(state.currentGroupSize - 1)
+		> state.dequeGroupB.at(state.currentGroupSize - 1))
 	{
-		for (std::deque<int>::iterator it = state.groupB.begin();
-			it != state.groupB.end(); it++)
+		for (std::deque<int>::iterator it = state.dequeGroupB.begin();
+			it != state.dequeGroupB.end(); it++)
 			dequeSequence.push_back(*it);
-		for (std::deque<int>::iterator it = state.groupA.begin();
-			it != state.groupA.end(); it++)
+		for (std::deque<int>::iterator it = state.dequeGroupA.begin();
+			it != state.dequeGroupA.end(); it++)
 			dequeSequence.push_back(*it);
 	}
 	else
 	{
-		for (std::deque<int>::iterator it = state.groupA.begin();
-			it != state.groupA.end(); it++)
+		for (std::deque<int>::iterator it = state.dequeGroupA.begin();
+			it != state.dequeGroupA.end(); it++)
 			dequeSequence.push_back(*it);
-		for (std::deque<int>::iterator it = state.groupB.begin();
-			it != state.groupB.end(); it++)
+		for (std::deque<int>::iterator it = state.dequeGroupB.begin();
+			it != state.dequeGroupB.end(); it++)
 			dequeSequence.push_back(*it);
 	}
 }
 
-void PmergeMe::storePendingGroup(SortState& state)
+void PmergeMe::storeDequePendingGroup(SortState& state)
 {
 	if (state.hasPending)
 	{
-		state.pending = state.dequeTemp;
+		state.dequePending = state.dequeTemp;
 		state.dequeTemp.clear();
 	}
 }
 
 void PmergeMe::rebuildDequeLevel(SortState& state)
 {
-	if (state.groupPairs > 1 || !state.pending.empty())
+	if (state.groupPairs > 1 || !state.dequePending.empty())
 	{
 		state.dequeTemp = dequeSequence;
 		dequeSequence.clear();
-		buildInsertionGroups(state);
-		rebuildMainChain(state);
+		buildDequeInsertionGroups(state);
+		rebuildDequeMainChain(state);
 	}
 }
 
-void PmergeMe::buildInsertionGroups(SortState& state)
+void PmergeMe::buildDequeInsertionGroups(SortState& state)
 {
 	for (std::size_t groupIndex = 0; groupIndex < state.groupPairs;
 		groupIndex++)
 	{
-		extractGroup(state, state.groupB);
-		extractGroup(state, state.groupA);
+		extractDequeGroup(state, state.dequeGroupB);
+		extractDequeGroup(state, state.dequeGroupA);
 		if (state.dequeTemp.empty() && state.hasPending)
 		{
 			for (std::size_t index = 0; index < state.currentGroupSize;
 				index++)
-				state.groupB.push_back(state.pending.at(index));
+				state.dequeGroupB.push_back(state.dequePending.at(index));
 			for (std::size_t index = 0; index < state.currentGroupSize;
 				index++)
-				state.pending.pop_back();
+				state.dequePending.pop_back();
 		}
 	}
 }
 
-void PmergeMe::rebuildMainChain(SortState& state)
+void PmergeMe::rebuildDequeMainChain(SortState& state)
 {
-	initializeMainChain(state);
-	insertRemainingGroups(state);
+	initializeDequeMainChain(state);
+	insertDequeRemainingGroups(state);
 }
 
-void PmergeMe::initializeMainChain(SortState& state)
+void PmergeMe::initializeDequeMainChain(SortState& state)
 {
 	for (std::size_t index = 0; index < state.currentGroupSize; index++)
-		dequeSequence.push_back(state.groupB.at(index));
-	for (std::size_t index = 0; index < state.groupA.size(); index++)
-		dequeSequence.push_back(state.groupA.at(index));
+		dequeSequence.push_back(state.dequeGroupB.at(index));
+	for (std::size_t index = 0; index < state.dequeGroupA.size(); index++)
+		dequeSequence.push_back(state.dequeGroupA.at(index));
 }
 
-void PmergeMe::insertRemainingGroups(SortState& state)
+void PmergeMe::insertDequeRemainingGroups(SortState& state)
 {
 	std::size_t previousBoundary = 1;
 	std::size_t jacobsthalIndex = 3;
 	std::size_t totalPendingGroups
-		= state.groupB.size() / state.currentGroupSize;
+		= state.dequeGroupB.size() / state.currentGroupSize;
 
 	while (previousBoundary < totalPendingGroups)
 	{
@@ -197,35 +208,35 @@ void PmergeMe::insertRemainingGroups(SortState& state)
 		for (std::size_t groupIndex = currentBoundary;
 			groupIndex > previousBoundary; groupIndex--)
 		{
-			insertGroupByIndex(state, groupIndex);
+			insertDequeGroupByIndex(state, groupIndex);
 		}
 		previousBoundary = currentBoundary;
 		jacobsthalIndex++;
 	}
 }
 
-void PmergeMe::insertGroupByIndex(SortState& state, std::size_t groupIndex)
+void PmergeMe::insertDequeGroupByIndex(SortState& state, std::size_t groupIndex)
 {	
-	std::size_t groupBegin = (groupIndex - 1) * state.currentGroupSize;
+	std::size_t dequeGroupBegin = (groupIndex - 1) * state.currentGroupSize;
 	std::size_t groupEnd = groupIndex * state.currentGroupSize - 1;
-	std::size_t partnerGroupIndex = findPartnerGroupIndex(state, groupEnd);
-	std::deque<int>::iterator insertionPosition	= findInsertionPosition(state.groupB.at(groupEnd), state, partnerGroupIndex);
-	insertGroup(state, insertionPosition, groupBegin, groupEnd);
+	std::size_t partnerGroupIndex = findDequePartnerGroupIndex(state, groupEnd);
+	std::deque<int>::iterator insertionPosition	= findDequeInsertionPosition(state.dequeGroupB.at(groupEnd), state, partnerGroupIndex);
+	insertDequeGroup(state, insertionPosition, dequeGroupBegin, groupEnd);
 }
 
-std::size_t PmergeMe::findPartnerGroupIndex(SortState& state,
+std::size_t PmergeMe::findDequePartnerGroupIndex(SortState& state,
 	std::size_t partnerIndex)
 {
 	std::size_t position = 0;
 
-	if (partnerIndex >= state.groupA.size())
+	if (partnerIndex >= state.dequeGroupA.size())
 		return (dequeSequence.size() / state.currentGroupSize);
-	while (dequeSequence.at(position) != state.groupA.at(partnerIndex))
+	while (dequeSequence.at(position) != state.dequeGroupA.at(partnerIndex))
 		position++;
 	return (position / state.currentGroupSize);
 }
 
-std::deque<int>::iterator PmergeMe::findInsertionPosition(
+std::deque<int>::iterator PmergeMe::findDequeInsertionPosition(
 	int targetRepresentative, SortState& state, std::size_t searchEndGroup)
 {
 	std::size_t searchBeginGroup = 0;
@@ -247,14 +258,14 @@ std::deque<int>::iterator PmergeMe::findInsertionPosition(
 	return (insertionPosition);
 }
 
-void PmergeMe::insertGroup(SortState& state,
-	std::deque<int>::iterator insertionPosition, std::size_t groupBegin,
+void PmergeMe::insertDequeGroup(SortState& state,
+	std::deque<int>::iterator insertionPosition, std::size_t dequeGroupBegin,
 	std::size_t groupEnd)
 {
 	std::deque<int>::iterator rangeBegin
-		= state.groupB.begin() + groupBegin;
+		= state.dequeGroupB.begin() + dequeGroupBegin;
 	std::deque<int>::iterator rangeEnd
-		= state.groupB.begin() + groupEnd + 1;
+		= state.dequeGroupB.begin() + groupEnd + 1;
 
 	dequeSequence.insert(insertionPosition, rangeBegin, rangeEnd);
 }
@@ -274,4 +285,187 @@ std::size_t PmergeMe::jacobsthal(std::size_t currentIndex)
 		return (currentIndex);
 	return (jacobsthal(currentIndex - 1)
 		+ 2 * jacobsthal(currentIndex - 2));
+}
+
+void PmergeMe::sortVectorRecursive()
+{
+	SortState state(vectorSequence.size(), groupSize);
+
+	if (state.groupPairs < 1)
+		return;
+	state.vectorTemp = vectorSequence;
+	vectorSequence.clear();
+	for (std::size_t groupIndex = 0; groupIndex < state.groupPairs;
+		groupIndex++)
+	{
+		extractVectorGroup(state, state.vectorGroupA);
+		extractVectorGroup(state, state.vectorGroupB);
+		orderVectorGroupPair(state);
+		state.vectorGroupA.clear();
+		state.vectorGroupB.clear();
+	}
+	storeVectorPendingGroup(state);
+	state.vectorTemp = vectorSequence;
+	groupSize *= 2;
+	sortVectorRecursive();
+	rebuildVectorLevel(state);
+}
+void PmergeMe::extractVectorGroup(SortState& state, std::vector<int>& group)
+{
+	for (std::size_t index = 0; index < state.currentGroupSize; index++)
+		group.push_back(state.vectorTemp.at(index));
+	for (std::size_t index = 0; index < state.currentGroupSize; index++)
+		state.vectorTemp.erase(state.vectorTemp.begin());
+}
+void PmergeMe::orderVectorGroupPair(SortState& state)
+{
+	if (state.vectorGroupA.at(state.currentGroupSize - 1)
+		> state.vectorGroupB.at(state.currentGroupSize - 1))
+	{
+		for (std::vector<int>::iterator it = state.vectorGroupB.begin();
+			it != state.vectorGroupB.end(); it++)
+			vectorSequence.push_back(*it);
+		for (std::vector<int>::iterator it = state.vectorGroupA.begin();
+			it != state.vectorGroupA.end(); it++)
+			vectorSequence.push_back(*it);
+	}
+	else
+	{
+		for (std::vector<int>::iterator it = state.vectorGroupA.begin();
+			it != state.vectorGroupA.end(); it++)
+			vectorSequence.push_back(*it);
+		for (std::vector<int>::iterator it = state.vectorGroupB.begin();
+			it != state.vectorGroupB.end(); it++)
+			vectorSequence.push_back(*it);
+	}
+}
+
+void PmergeMe::storeVectorPendingGroup(SortState& state)
+{
+	if (state.hasPending)
+	{
+		state.vectorPending = state.vectorTemp;
+		state.vectorTemp.clear();
+	}
+}
+
+void PmergeMe::rebuildVectorLevel(SortState& state)
+{
+	if (state.groupPairs > 1 || !state.vectorPending.empty())
+	{
+		state.vectorTemp = vectorSequence;
+		vectorSequence.clear();
+		buildVectorInsertionGroups(state);
+		rebuildVectorMainChain(state);
+	}
+}
+
+void PmergeMe::buildVectorInsertionGroups(SortState& state)
+{
+	for (std::size_t groupIndex = 0; groupIndex < state.groupPairs;
+		groupIndex++)
+	{
+		extractVectorGroup(state, state.vectorGroupB);
+		extractVectorGroup(state, state.vectorGroupA);
+		if (state.vectorTemp.empty() && state.hasPending)
+		{
+			for (std::size_t index = 0; index < state.currentGroupSize;
+				index++)
+				state.vectorGroupB.push_back(state.vectorPending.at(index));
+			for (std::size_t index = 0; index < state.currentGroupSize;
+				index++)
+				state.vectorPending.pop_back();
+		}
+	}
+}
+
+void PmergeMe::rebuildVectorMainChain(SortState& state)
+{
+	initializeVectorMainChain(state);
+	insertVectorRemainingGroups(state);
+}
+
+void PmergeMe::initializeVectorMainChain(SortState& state)
+{
+	for (std::size_t index = 0; index < state.currentGroupSize; index++)
+		vectorSequence.push_back(state.vectorGroupB.at(index));
+	for (std::size_t index = 0; index < state.vectorGroupA.size(); index++)
+		vectorSequence.push_back(state.vectorGroupA.at(index));
+}
+
+void PmergeMe::insertVectorRemainingGroups(SortState& state)
+{
+	std::size_t previousBoundary = 1;
+	std::size_t jacobsthalIndex = 3;
+	std::size_t totalPendingGroups
+		= state.vectorGroupB.size() / state.currentGroupSize;
+
+	while (previousBoundary < totalPendingGroups)
+	{
+		std::size_t currentBoundary = jacobsthal(jacobsthalIndex);
+		if (currentBoundary > totalPendingGroups)
+			currentBoundary = totalPendingGroups;
+		for (std::size_t groupIndex = currentBoundary;
+			groupIndex > previousBoundary; groupIndex--)
+		{
+			insertVectorGroupByIndex(state, groupIndex);
+		}
+		previousBoundary = currentBoundary;
+		jacobsthalIndex++;
+	}
+}
+
+void PmergeMe::insertVectorGroupByIndex(SortState& state, std::size_t groupIndex)
+{
+	std::size_t vectorGroupBegin = (groupIndex - 1) * state.currentGroupSize;
+	std::size_t groupEnd = groupIndex * state.currentGroupSize - 1;
+	std::size_t partnerGroupIndex = findVectorPartnerGroupIndex(state, groupEnd);
+	std::vector<int>::iterator insertionPosition	= findVectorInsertionPosition(state.vectorGroupB.at(groupEnd), state, partnerGroupIndex);
+	insertVectorGroup(state, insertionPosition, vectorGroupBegin, groupEnd);
+}
+
+std::size_t PmergeMe::findVectorPartnerGroupIndex(SortState& state,
+	std::size_t partnerIndex)
+{
+	std::size_t position = 0;
+
+	if (partnerIndex >= state.vectorGroupA.size())
+		return (vectorSequence.size() / state.currentGroupSize);
+	while (vectorSequence.at(position) != state.vectorGroupA.at(partnerIndex))
+		position++;
+	return (position / state.currentGroupSize);
+}
+
+std::vector<int>::iterator PmergeMe::findVectorInsertionPosition(
+	int targetRepresentative, SortState& state, std::size_t searchEndGroup)
+{
+	std::size_t searchBeginGroup = 0;
+	std::vector<int>::iterator insertionPosition = vectorSequence.begin();
+
+	while (searchBeginGroup < searchEndGroup)
+	{
+		std::size_t middleGroup
+			= searchBeginGroup + (searchEndGroup - searchBeginGroup) / 2;
+		std::size_t representativeIndex
+			= middleGroup * state.currentGroupSize
+			+ state.currentGroupSize - 1;
+		if (targetRepresentative < vectorSequence.at(representativeIndex))
+			searchEndGroup = middleGroup;
+		else
+			searchBeginGroup = middleGroup + 1;
+	}
+	insertionPosition += searchBeginGroup * state.currentGroupSize;
+	return (insertionPosition);
+}
+
+void PmergeMe::insertVectorGroup(SortState& state,
+	std::vector<int>::iterator insertionPosition, std::size_t vectorGroupBegin,
+	std::size_t groupEnd)
+{
+	std::vector<int>::iterator rangeBegin
+		= state.vectorGroupB.begin() + vectorGroupBegin;
+	std::vector<int>::iterator rangeEnd
+		= state.vectorGroupB.begin() + groupEnd + 1;
+
+	vectorSequence.insert(insertionPosition, rangeBegin, rangeEnd);
 }

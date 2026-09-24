@@ -29,29 +29,46 @@ class PmergeMe
 		// Deque algorithm
 		void fillDeque(const InputData& data);
 		void sortDequeRecursive();
-		void extractGroup(SortState& state, std::deque<int>& group);
-		void orderGroupPair(SortState& state);
-		void storePendingGroup(SortState& state);
+		void extractDequeGroup(SortState& state, std::deque<int>& group);
+		void orderDequeGroupPair(SortState& state);
+		void storeDequePendingGroup(SortState& state);
 		void rebuildDequeLevel(SortState& state);
-		void buildInsertionGroups(SortState& state);
-		void rebuildMainChain(SortState& state);
-		void initializeMainChain(SortState& state);
-		void insertRemainingGroups(SortState& state);
-		void insertGroupByIndex(SortState& state, std::size_t groupIndex);
-		std::size_t findPartnerGroupIndex(SortState& state,
+		void buildDequeInsertionGroups(SortState& state);
+		void rebuildDequeMainChain(SortState& state);
+		void initializeDequeMainChain(SortState& state);
+		void insertDequeRemainingGroups(SortState& state);
+		void insertDequeGroupByIndex(SortState& state, std::size_t groupIndex);
+		std::size_t findDequePartnerGroupIndex(SortState& state,
 			std::size_t partnerIndex);
-		std::deque<int>::iterator findInsertionPosition(
+		std::deque<int>::iterator findDequeInsertionPosition(
 			int targetRepresentative, SortState& state,
 			std::size_t searchEndGroup);
-		void insertGroup(SortState& state,
+		void insertDequeGroup(SortState& state,
 			std::deque<int>::iterator insertionPosition,
 			std::size_t groupBegin, std::size_t groupEnd);
 
 		// Vector algorithm
 		void fillVector(const InputData& data);
+		void sortVectorRecursive();
+		void extractVectorGroup(SortState& state, std::vector<int>& group);
+		void orderVectorGroupPair(SortState& state);
+		void storeVectorPendingGroup(SortState& state);
+		void rebuildVectorLevel(SortState& state);
+		void buildVectorInsertionGroups(SortState& state);
+		void rebuildVectorMainChain(SortState& state);
+		void initializeVectorMainChain(SortState& state);
+		void insertVectorRemainingGroups(SortState& state);
+		void insertVectorGroupByIndex(SortState& state, std::size_t groupIndex);
+		std::size_t findVectorPartnerGroupIndex(SortState& state,
+			std::size_t partnerIndex);
+		std::vector<int>::iterator findVectorInsertionPosition(
+			int targetRepresentative, SortState& state, std::size_t searchEndGroup);
+		void insertVectorGroup(SortState& state,
+			std::vector<int>::iterator insertionPosition, std::size_t vectorGroupBegin,
+			std::size_t groupEnd);
 
 		// Shared utilities
-		std::size_t jacobsthal(std::size_t currentIndex);
+		std::size_t jacobsthal(std::size_t currentIndex);	
 };
 
 #endif
