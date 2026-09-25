@@ -16,10 +16,10 @@ class PmergeMe
 {
 	public:
 		PmergeMe();
-		PmergeMe(const InputData& data);
 		PmergeMe(const PmergeMe& copy);
 		PmergeMe& operator=(const PmergeMe& other);
 		~PmergeMe();
+		void processInput(const InputData& data);
 
 	private:
 		std::vector<int> vectorSequence;
@@ -27,8 +27,11 @@ class PmergeMe
 		std::size_t groupSize;
 		std::size_t dequeComparisons;
 		std::size_t vectorComparisons;
+		double		timeMsDeque;
+		double		timeMsVector;
 
 		// Deque algorithm
+		void runDequeSequence(const InputData& data);
 		void fillDeque(const InputData& data);
 		void sortDequeRecursive();
 		void extractDequeGroup(SortState& state, std::deque<int>& group);
@@ -50,6 +53,7 @@ class PmergeMe
 			std::size_t groupBegin, std::size_t groupEnd);
 
 		// Vector algorithm
+		void runVectorSequence(const InputData& data);
 		void fillVector(const InputData& data);
 		void sortVectorRecursive();
 		void extractVectorGroup(SortState& state, std::vector<int>& group);
@@ -71,7 +75,7 @@ class PmergeMe
 
 		// Shared utilities
 		std::size_t jacobsthal(std::size_t currentIndex);
-		void printBefore(const InputData data);
+		void printBefore(const InputData& data);
 		void printResult(double timeDeque, double timeVector);
 		void printComparisonCounts() const;
 };
