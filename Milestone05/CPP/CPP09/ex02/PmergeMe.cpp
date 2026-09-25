@@ -2,6 +2,10 @@
 
 #include <iostream>
 #include <sstream>
+#include <ctime>
+#include <iomanip>
+#include <climits>
+#include <stdexcept>
 
 struct SortState
 {
@@ -33,31 +37,35 @@ struct SortState
 };
 
 PmergeMe::PmergeMe()
-	: vectorSequence(0), dequeSequence(0), groupSize(1)
+	: vectorSequence(0), dequeSequence(0), groupSize(1), dequeComparisons(0),
+	  vectorComparisons(0)
 {
 }
 
 PmergeMe::PmergeMe(const InputData& data)
-	: vectorSequence(0), dequeSequence(0), groupSize(1)
+	: vectorSequence(0), dequeSequence(0), groupSize(1), dequeComparisons(0),
+	  vectorComparisons(0)
 {
+	std::clock_t	dequeStart = std::clock();
 	fillDeque(data);
 	sortDequeRecursive();
-	std::cout << "Deque After: " << std::endl;
-	for (std::size_t index = 0; index < dequeSequence.size(); index++)
-		std::cout << dequeSequence.at(index) << " ";
-	std::cout << std::endl;
+	std::clock_t	dequeEnd = std::clock();
 	groupSize = 1;
+	std::clock_t	VectorStart = std::clock();
 	fillVector(data);
 	sortVectorRecursive();
-	std::cout << "Vector After: " << std::endl;
-	for (std::size_t index = 0; index < vectorSequence.size(); index++)
-		std::cout << vectorSequence.at(index) << " ";
-	std::cout << std::endl;
+	std::clock_t	VectorEnd = std::clock();
+	double	timemsDeque = (dequeEnd - dequeStart) * 1000000.0 / CLOCKS_PER_SEC;
+	double	timemsVector = (VectorEnd - VectorStart)  * 1000000.0 / CLOCKS_PER_SEC;
+	printBefore(data);
+	printResult(timemsDeque, timemsVector);
+	//printComparisonCounts();
 }
 
 PmergeMe::PmergeMe(const PmergeMe& copy)
 	: vectorSequence(copy.vectorSequence), dequeSequence(copy.dequeSequence),
-	  groupSize(copy.groupSize)
+	  groupSize(copy.groupSize), dequeComparisons(copy.dequeComparisons),
+	  vectorComparisons(copy.vectorComparisons)
 {
 }
 
@@ -68,6 +76,8 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& other)
 		vectorSequence = other.vectorSequence;
 		dequeSequence = other.dequeSequence;
 		groupSize = other.groupSize;
+		dequeComparisons = other.dequeComparisons;
+		vectorComparisons = other.vectorComparisons;
 	}
 	return (*this);
 }
@@ -76,13 +86,64 @@ PmergeMe::~PmergeMe()
 {
 }
 
+void PmergeMe::printComparisonCounts() const
+{
+	std::cout << "Value comparisons with std::deque: "
+		<< dequeComparisons << std::endl;
+	std::cout << "Value comparisons with std::vector: "
+		<< vectorComparisons << std::endl;
+}
+
+void PmergeMe::printBefore(const InputData data)
+{
+	std::cout << "Before: ";
+	bool space = false;
+	for(std::string::const_iterator it = data.input.begin(); it < data.input.end(); it++)
+	{
+		if(std::isspace(*it) && !space)
+			space = true;
+		else if(std::isspace(*it) && space)
+			continue;
+		else if(std::isdigit(*it))
+			space = false;
+		std::cout << *it;
+	}
+	std::cout << std::endl;
+}
+
+void PmergeMe::printResult(double timeDeque, double timeVector)
+{
+	std::cout << "After: ";
+	for(std::size_t index = 0; index < vectorSequence.size(); index++)
+	{
+		std::cout << vectorSequence.at(index);
+		if(index != vectorSequence.size() - 1)
+			std::cout << " ";
+	}
+	std::cout << std::endl;
+	std::cout << "Time to process a range of " << dequeSequence.size() << " elements with std::deque : "<< std::fixed << std::setprecision(5) << timeDeque << " us" << std::endl;
+	std::cout << "Time to process a range of " << vectorSequence.size() << " elements with std::vector : "<< std::fixed << std::setprecision(5) << timeVector << " us" << std::endl;
+}
+
 void PmergeMe::fillDeque(const InputData& data)
 {
 	std::istringstream converter(data.input);
-	int value = 0;
+	long value = 0;
+	int	finalValue = 0;
+	std::string firstConversion;
 
-	while (converter >> value)
-		dequeSequence.push_back(value);
+	while (converter >> firstConversion)
+	{
+		std::istringstream secondConversion(firstConversion);
+		secondConversion >> value;
+				if(!secondConversion.eof() || secondConversion.fail())
+			throw std::invalid_argument("Error.");
+
+		if(value <= 0 || value > INT_MAX)
+			throw std::invalid_argument("Error.");
+		finalValue = value;
+		dequeSequence.push_back(finalValue);
+	}
 }
 
 void PmergeMe::sortDequeRecursive()
@@ -119,6 +180,7 @@ void PmergeMe::extractDequeGroup(SortState& state, std::deque<int>& group)
 
 void PmergeMe::orderDequeGroupPair(SortState& state)
 {
+	dequeComparisons++;
 	if (state.dequeGroupA.at(state.currentGroupSize - 1)
 		> state.dequeGroupB.at(state.currentGroupSize - 1))
 	{
@@ -249,6 +311,7 @@ std::deque<int>::iterator PmergeMe::findDequeInsertionPosition(
 		std::size_t representativeIndex
 			= middleGroup * state.currentGroupSize
 			+ state.currentGroupSize - 1;
+		dequeComparisons++;
 		if (targetRepresentative < dequeSequence.at(representativeIndex))
 			searchEndGroup = middleGroup;
 		else
@@ -273,10 +336,22 @@ void PmergeMe::insertDequeGroup(SortState& state,
 void PmergeMe::fillVector(const InputData& data)
 {
 	std::istringstream converter(data.input);
-	int value = 0;
+	long value = 0;
+	int	finalValue = 0;
+	std::string firstConversion;
 
-	while (converter >> value)
-		vectorSequence.push_back(value);
+	while (converter >> firstConversion)
+	{
+		std::istringstream secondConversion(firstConversion);
+		secondConversion >> value;
+		if(!secondConversion.eof() || secondConversion.fail())
+			throw std::invalid_argument("Error.");
+
+		if(value <= 0 || value > INT_MAX)
+			throw std::invalid_argument("Error.");
+		finalValue = value;
+		vectorSequence.push_back(finalValue);
+	}
 }
 
 std::size_t PmergeMe::jacobsthal(std::size_t currentIndex)
@@ -319,6 +394,7 @@ void PmergeMe::extractVectorGroup(SortState& state, std::vector<int>& group)
 }
 void PmergeMe::orderVectorGroupPair(SortState& state)
 {
+	vectorComparisons++;
 	if (state.vectorGroupA.at(state.currentGroupSize - 1)
 		> state.vectorGroupB.at(state.currentGroupSize - 1))
 	{
@@ -449,6 +525,7 @@ std::vector<int>::iterator PmergeMe::findVectorInsertionPosition(
 		std::size_t representativeIndex
 			= middleGroup * state.currentGroupSize
 			+ state.currentGroupSize - 1;
+		vectorComparisons++;
 		if (targetRepresentative < vectorSequence.at(representativeIndex))
 			searchEndGroup = middleGroup;
 		else

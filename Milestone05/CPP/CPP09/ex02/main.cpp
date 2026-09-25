@@ -6,11 +6,19 @@
 
 void validateInput(const std::string& input)
 {
+	std::size_t qtyNumbers = 0;
+
+	if(input.empty())
+		throw std::invalid_argument("Error.");
 	for (std::string::const_iterator it = input.begin(); it != input.end(); it++)
 	{
-		if (!std::isdigit(*it) && !std::isspace(*it))
+		if(std::isdigit(*it))
+			qtyNumbers++;
+		else if (!std::isdigit(*it) && !std::isspace(*it))
 			throw std::invalid_argument("Error.");
 	}
+	if(qtyNumbers < 1)
+		throw std::invalid_argument("Error.");
 }
 
 void initializeInputData(InputData& data, int argumentCount, char** arguments)
@@ -39,11 +47,12 @@ int main(int argc, char** argv)
 		InputData data;
 
 		parseAndValidateInput(data, argc, argv);
-		std::cout << "Before: " << data.input << std::endl;
 		PmergeMe pmergeMe(data);
 	}
 	catch (const std::exception& exception)
 	{
 		std::cerr << exception.what() << '\n';
+		return(1);
 	}
+	return(0);
 }

@@ -25,6 +25,8 @@ class PmergeMe
 		std::vector<int> vectorSequence;
 		std::deque<int> dequeSequence;
 		std::size_t groupSize;
+		std::size_t dequeComparisons;
+		std::size_t vectorComparisons;
 
 		// Deque algorithm
 		void fillDeque(const InputData& data);
@@ -68,7 +70,10 @@ class PmergeMe
 			std::size_t groupEnd);
 
 		// Shared utilities
-		std::size_t jacobsthal(std::size_t currentIndex);	
+		std::size_t jacobsthal(std::size_t currentIndex);
+		void printBefore(const InputData data);
+		void printResult(double timeDeque, double timeVector);
+		void printComparisonCounts() const;
 };
 
 #endif
